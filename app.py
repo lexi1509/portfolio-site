@@ -1,59 +1,41 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
 import smtplib
-# ...existing code...
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-# ...existing code...
 import os
 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-here'
 
-# Portfolio data
 portfolio_data = {
-    'name': 'Aderine Perez',
-    'title': 'Good Coder and Problem Solver',
-    'location': 'Coimbatore, Tamil Nadu',
-    'bio': 'Passionate full-stack developer specializing in Python, web technologies, and creative problem-solving. I love building innovative solutions that make a difference.',
-    'skills': [
-        {'name': 'Python', 'level': 90, 'category': 'Backend'},
-        {'name': 'Flask', 'level': 85, 'category': 'Backend'},
-        {'name': 'HTML/CSS', 'level': 88, 'category': 'Frontend'},
-        {'name': 'JavaScript', 'level': 80, 'category': 'Frontend'},
-        {'name': 'Git/GitHub', 'level': 85, 'category': 'Tools'},
-        {'name': 'Problem Solving', 'level': 92, 'category': 'Core'},
-    ],
+    'name': 'Любовь Алексеева',
+    'title': 'Начинающий специалист по тестированию',
+    'location': 'Саратов',
+    'bio': 'Привет! Меня зовут Любовь, я начинающий специалист по тестированию из Саратова. В своей работе я использую Python, MySQL, Flask и Telegram API. Увлекаюсь созданием проектов, которые помогают мне оттачивать навыки поиска несоответствий и улучшения качества продуктов.',
+    'interests': ['Python', 'Тестирование', 'MySQL', 'VS Code'],
+    'interests_description': 'Я использую AI как инструмент для ускорения обучения и решения задач. Важно не просто получить код, а понять его. Именно так я строю свою практику.',
     'projects': [
         {
-            'title': 'WeatherCheck',
-            'description': 'A comprehensive weather application where users can check weather information for any location worldwide. Features real-time data and intuitive interface.',
-            'technologies': ['CSS', 'HTML', 'JavaScript', 'Weather API'],
-            'github': 'https://github.com/Aderine2006/WeatherCheck',
-            'type': 'Web Application',
-            'status': 'Completed'
+            'title': 'Telegram Info Bot',
+            'description': 'Бот-визитка с фото и кнопками на aiogram. Рассказывает о проектах и контактах.',
+            'technologies': ['Python', 'aiogram', 'Telegram API'],
+            'github': 'https://github.com/lexi1509/telegram-info-bot',
+            'type': 'Telegram Bot',
+            'status': 'Active'
         },
         {
-            'title': 'RecipeFinder',
-            'description': 'An interactive web application that helps users discover recipes for their favorite dishes. Perfect for cooking enthusiasts looking for new culinary adventures.',
-            'technologies': ['CSS', 'HTML', 'JavaScript', 'Recipe API'],
-            'github': 'https://github.com/Aderine2006/RecipeFinder',
-            'type': 'Web Application',
-            'status': 'Completed'
-        },
-        {
-            'title': 'QR Code Generator',
-            'description': 'Advanced Python-based QR code generator with customization options including color changes, border adjustments, and resizing capabilities. Goes beyond basic black and white codes.',
-            'technologies': ['Python', 'PIL', 'qrcode', 'tkinter'],
-            'github': 'https://github.com/Aderine2006/Qrcode_generator',
-            'type': 'Desktop Application',
+            'title': 'My First Project',
+            'description': 'Первый репозиторий на GitHub. Начало пути в Git и GitHub.',
+            'technologies': ['Git', 'GitHub'],
+            'github': 'https://github.com/lexi1509/my-first-project',
+            'type': 'Learning Project',
             'status': 'Completed'
         }
     ],
     'social': {
-        'github': 'https://github.com/Aderine2006',
-        'linkedin': 'https://www.linkedin.com/in/aderine-perez',
-        'leetcode': 'https://leetcode.com/u/Aderine_2487',
-        'email': 'your.email@example.com'  # Update with your actual email
+        'github': 'https://github.com/lexi1509',
+        'telegram': 'https://t.me/Alexi1509',
+        'email': 'Volsar20141991@yandex.com'
     }
 }
 
@@ -73,15 +55,7 @@ def send_message():
         subject = request.form['subject']
         message = request.form['message']
         
-        # Here you can implement email sending logic
-        # For now, we'll just flash a success message
-        flash('Thank you for your message! I\'ll get back to you soon.', 'success')
-        
-        # In a real application, you might want to:
-        # 1. Save to database
-        # 2. Send email notification
-        # 3. Use a service like SendGrid or Gmail SMTP
-        
+        flash('Спасибо за ваше сообщение! Я обязательно отвечу вам в ближайшее время.', 'success')
         return redirect(url_for('contact'))
 
 @app.route('/project/<project_title>')
@@ -98,4 +72,4 @@ def page_not_found(e):
     return render_template('404.html', data=portfolio_data), 404
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, port=5003, host='127.0.0.1')

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Навигация -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
@@ -17,11 +17,10 @@
                 <span class="logo-pulse"></span>
             </div>
             <ul class="nav-menu">
-                <li><a href="#hero" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
+                <li><a href="#hero" class="nav-link">Главная</a></li>
+                <li><a href="#about" class="nav-link">Обо мне</a></li>
+                <li><a href="#projects" class="nav-link">Проекты</a></li>
+                <li><a href="{{ url_for('contact') }}" class="nav-link">Контакты</a></li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -31,13 +30,12 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Главный экран (Hero) -->
     <section id="hero" class="hero">
-        <div class="hero-container">
+        <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
                     <h1 class="hero-title">
-                        <span class="title-line">Hello, I'm</span>
                         <span class="title-name">{{ data.name }}</span>
                         <span class="title-subtitle">{{ data.title }}</span>
                     </h1>
@@ -47,8 +45,8 @@
                         <span>{{ data.location }}</span>
                     </div>
                     <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary">View Projects</a>
-                        <a href="{{ url_for('contact') }}" class="btn btn-secondary">Contact Me</a>
+                        <a href="#projects" class="btn btn-primary">Мои проекты</a>
+                        <a href="{{ url_for('contact') }}" class="btn btn-secondary">Связаться</a>
                     </div>
                 </div>
                 <div class="hero-visual">
@@ -63,35 +61,38 @@
                 </div>
             </div>
         </div>
-        <div class="hero-bg">
-            <div class="grid-overlay"></div>
-            <div class="particles" id="particles"></div>
-        </div>
     </section>
 
-    <!-- About Section -->
+    <!-- Обо мне -->
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
+            <h2 class="section-title">Обо мне</h2>
             <div class="about-content">
                 <div class="about-text">
                     <div class="about-card">
-                        <h3>Who I Am</h3>
-                        <p>{{ data.bio }}</p>
-                        <p>Based in {{ data.location }}, I'm passionate about creating innovative solutions through code. My journey in programming has led me to explore various technologies and build projects that solve real-world problems.</p>
+                        <h3>Кто я</h3>
+                        <p>Я начинающий специалист по тестированию, живу и работаю в Саратове. Мой путь в IT начался с изучения Python и желания понять, как создаются и совершенствуются цифровые продукты.</p>
+                        
+                        <p>Для меня тестирование — это не просто рутинная проверка, а увлекательный процесс исследования продукта. Я использую современные инструменты, такие как MySQL для работы с базами данных, Flask для понимания backend-логики и Telegram API для создания pet-проектов. Эти проекты помогают мне не только прокачивать технические навыки, но и видеть полную картину создания продукта — от идеи до реализации.</p>
+                        
+                        <p>Мой подход к работе строится на трёх китах: внимательность к деталям, ответственность за результат и постоянное стремление к развитию. Я убеждена, что хороший тестировщик — это не просто тот, кто находит баги, а тот, кто помогает команде сделать продукт лучше и удобнее для пользователя.</p>
+                        
+                        <p><strong>Как я учусь и развиваюсь:</strong> Современные технологии, включая AI, помогают мне ускорять обучение и проверять идеи. Но главное для меня — понимать, как работает каждое решение. Поэтому любой код, даже написанный с помощью искусственного интеллекта, я разбираю до мелочей и учусь на нём.</p>
+                        
+                        <div class="interests">
+                            <p><strong>Мой подход:</strong> Я использую AI как инструмент для ускорения обучения и решения задач. Важно не просто получить код, а понять его. Именно так я строю свою практику.</p>
+                            <h4>Мои интересы</h4>
+                            <div class="interest-tags">
+                                {% for interest in data.interests %}
+                                <span class="interest-tag">{{ interest }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
                         
                         <div class="stats">
                             <div class="stat-item">
                                 <span class="stat-number">{{ data.projects|length }}</span>
-                                <span class="stat-label">Projects</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">{{ data.skills|length }}</span>
-                                <span class="stat-label">Skills</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">100%</span>
-                                <span class="stat-label">Dedication</span>
+                                <span class="stat-label">Проектов</span>
                             </div>
                         </div>
                     </div>
@@ -108,8 +109,7 @@
                             <p>{{ data.title }}</p>
                             <div class="social-links">
                                 <a href="{{ data.social.github }}" target="_blank"><i class="fab fa-github"></i></a>
-                                <a href="{{ data.social.linkedin }}" target="_blank"><i class="fab fa-linkedin"></i></a>
-                                <a href="{{ data.social.leetcode }}" target="_blank"><i class="fas fa-code"></i></a>
+                                <a href="{{ data.social.telegram }}" target="_blank"><i class="fab fa-telegram"></i></a>
                             </div>
                         </div>
                     </div>
@@ -118,33 +118,10 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-grid">
-                {% for skill in data.skills %}
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <h4>{{ skill.name }}</h4>
-                        <span class="skill-category">{{ skill.category }}</span>
-                    </div>
-                    <div class="skill-progress">
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: {{ skill.level }}%"></div>
-                        </div>
-                        <span class="skill-percentage">{{ skill.level }}%</span>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
+    <!-- Проекты -->
     <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
+            <h2 class="section-title">Мои проекты</h2>
             <div class="projects-grid">
                 {% for project in data.projects %}
                 <div class="project-card">
@@ -164,14 +141,8 @@
                     <div class="project-actions">
                         <a href="{{ project.github }}" target="_blank" class="btn btn-outline">
                             <i class="fab fa-github"></i>
-                            View Code
+                            Код на GitHub
                         </a>
-                        {% if project.live %}
-                        <a href="{{ project.live }}" target="_blank" class="btn btn-primary">
-                            <i class="fas fa-external-link-alt"></i>
-                            Live Demo
-                        </a>
-                        {% endif %}
                     </div>
                     <div class="project-glow"></div>
                 </div>
@@ -180,18 +151,57 @@
         </div>
     </section>
 
-    <!-- Contact CTA -->
-    <section class="contact-cta">
+    <!-- Контакты -->
+    <section id="contact" class="contact">
         <div class="container">
-            <div class="cta-content">
-                <h2>Let's Build Something Amazing Together</h2>
-                <p>Ready to discuss your next project? I'm always excited to work on innovative solutions.</p>
-                <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">Get In Touch</a>
+            <h2 class="section-title">Контакты</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Свяжитесь со мной</h3>
+                    <p>Я всегда открыта для новых знакомств и интересных проектов. Если у вас есть вопросы или предложения — пишите!</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>{{ data.social.email }}</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-github"></i>
+                            <a href="{{ data.social.github }}" target="_blank">GitHub</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-telegram"></i>
+                            <a href="{{ data.social.telegram }}" target="_blank">Telegram</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Напишите мне</h3>
+                    <form method="post" action="{{ url_for('send_message') }}">
+                        <input type="text" name="name" placeholder="Ваше имя" required>
+                        <input type="email" name="email" placeholder="Ваш email" required>
+                        <input type="text" name="subject" placeholder="Тема" required>
+                        <textarea name="message" placeholder="Сообщение" rows="5" required></textarea>
+                        <button type="submit" class="btn btn-primary">Отправить</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Призыв к действию -->
+    <section class="contact-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Давайте создадим что-то удивительное вместе</h2>
+                <p>Готовы обсудить ваш следующий проект? Я всегда открыта для интересных задач.</p>
+                <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">Написать мне</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -203,19 +213,18 @@
                 <div class="footer-right">
                     <div class="footer-social">
                         <a href="{{ data.social.github }}" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="{{ data.social.linkedin }}" target="_blank"><i class="fab fa-linkedin"></i></a>
-                        <a href="{{ data.social.leetcode }}" target="_blank"><i class="fas fa-code"></i></a>
+                        <a href="{{ data.social.telegram }}" target="_blank"><i class="fab fa-telegram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 {{ data.name }}. Crafted with passion and code.</p>
+                <p>&copy; 2025 {{ data.name }}. Сделано с passion и кодом.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
+        // Мобильное меню
         const hamburger = document.querySelector('.hamburger');
         const navMenu = document.querySelector('.nav-menu');
 
@@ -224,36 +233,21 @@
             navMenu.classList.toggle('active');
         });
 
-        // Smooth scrolling
+        // Плавная прокрутка
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
+                // Закрываем мобильное меню после клика
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
             });
         });
 
-        // Particles animation
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 5 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Navbar scroll effect
+        // Эффект навигации при скролле
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
@@ -262,24 +256,6 @@
                 navbar.classList.remove('scrolled');
             }
         });
-
-        // Initialize particles
-        createParticles();
-
-        // Skill bars animation
-        const skillBars = document.querySelectorAll('.skill-fill');
-        const skillsSection = document.querySelector('.skills');
-
-        const animateSkillBars = () => {
-            const rect = skillsSection.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                skillBars.forEach(bar => {
-                    bar.style.animationPlayState = 'running';
-                });
-            }
-        };
-
-        window.addEventListener('scroll', animateSkillBars);
     </script>
 </body>
 </html>
